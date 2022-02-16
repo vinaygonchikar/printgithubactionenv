@@ -1,0 +1,38 @@
+name: tagging based on commit in master branch
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+        
+      - name: docker images
+        run: |
+          echo "TAG_NAME=$(v1.1.1)" >> $GITHUB_ENV
+          echo "${{ env.TAG_NAME }}"
+         
+      - name: check tag status
+        run: |
+          if [[ ${{ steps.generate_number.outputs.random_number }} == v*.*.* ]]; then exit 0; else exit 1; fi
+        
+      - name: docker images
+        run: docker images 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
