@@ -16,7 +16,7 @@ jobs:
          
       - name: check tag status
         run: |
-          if [[ ${{ steps.generate_number.outputs.random_number }} == v*.*.* ]]; then exit 0; else exit 1; fi
+          if [[ ${{ env.TAG_NAME }} == v*.*.* ]]; then exit 0; else exit 1; fi
         
       - name: docker images
         run: docker images 
