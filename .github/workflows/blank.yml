@@ -11,14 +11,14 @@ jobs:
         
       - name: display commit message
         run: echo "${{ github.event.head_commit.message }}"
+
+      - name: store tag name
+        run: echo "TAG_NAME=$(echo "${{ github.event.head_commit.message }}" | cut -d':' -f1)" >> $GITHUB_ENV
         
       - name: verify the valid commit message received or not for tagging 
         run: |
-          if [[ ${{ github.event.head_commit.message }} == v*.*.* ]] || [[ ${{ github.event.head_commit.message }} == V*.*.* ]]; then exit 0; else exit 1; fi
+          if [[ ${{ env.TAG_NAME }} == v*.*.* ]] || [[ ${{ env.TAG_NAME }} == V*.*.* ]]; then exit 0; else exit 1; fi
         
-      - name: store tag name
-        run: echo "TAG_NAME=$(echo "${{ github.event.head_commit.message }}" | cut -d':' -f1)" >> $GITHUB_ENV
-          
       - name: tag the master branch
         run: git tag "${{ env.TAG_NAME }}"     
         
