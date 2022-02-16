@@ -18,10 +18,13 @@ jobs:
             
       - name: check tag status
         run: |
-          if [[ ${{ env.TAG_NAME }} == v*.*.* ]]; then exit 0; else exit 1; fi
+          if [[ ${{ env.TAG_NAME }} == v*.*.* ] || [ ${{ env.TAG_NAME }} == V*.*.* ]]; then exit 0; else exit 1; fi
         
       - name: docker images
         run: docker images 
+        
+        
+
 
 
 
