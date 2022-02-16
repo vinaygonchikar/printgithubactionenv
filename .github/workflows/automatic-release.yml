@@ -1,18 +1,47 @@
-name: automatic-release
+# name: automatic-release
+# on:
+#   push:
+#     tags:
+#       - 'v*'
+# jobs:
+#   automatic-release:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Create Release Notes
+#         uses: actions/github-script@v4.0.2
+#         with:
+#           github-token: ${{secrets.GITHUB_TOKEN}}
+#           script: |
+#             await github.request(`POST /repos/${{ github.repository }}/releases`, {
+#               tag_name: "${{ github.ref }}",
+#               generate_release_notes: true
+#             });
 on:
   push:
+    # Sequence of patterns matched against refs/tags
     tags:
-      - 'v*'
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Create Release
+
 jobs:
-  automatic-release:
+  build:
+    name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: Create Release Notes
-        uses: actions/github-script@v4.0.2
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            await github.request(`POST /repos/${{ github.repository }}/releases`, {
-              tag_name: "${{ github.ref }}",
-              generate_release_notes: true
-            });
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
