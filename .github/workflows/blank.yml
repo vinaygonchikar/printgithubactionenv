@@ -1,5 +1,5 @@
 
-name: CI
+name: tagging based on commit in master branch
 on:
   push:
 jobs:
@@ -8,9 +8,16 @@ jobs:
     steps:
 
       - uses: actions/checkout@v2
-      
-      - name: Run a one-line script
-        run: echo Hello, world!
         
       - name: display commit message
         run: echo "${{ github.event.head_commit.message }}"
+        
+      - name: store tag name
+        run: echo "TAG_NAME=$(echo "${{ github.event.head_commit.message }}" | cut -d':' -f1 | cut -d'v' -f2 | cut -d'V' -f2)" >> $GITHUB_ENV
+          
+      - name: tag the master branch
+        run: git tag "${{ env.TAG_NAME }}"     
+        
+      - name: push the tag to remote
+        run: git push origin "${{ env.TAG_NAME }}"     
+        
