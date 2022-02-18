@@ -1,1 +1,8 @@
-a
+
+on: 
+  workflow_dispatch:
+    inputs:
+      tagname:
+        description: 'enter the tag name'     
+        required: true
+        default: 'warning' 
