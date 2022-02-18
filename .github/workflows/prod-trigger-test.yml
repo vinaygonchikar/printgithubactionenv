@@ -2,8 +2,8 @@ name: prod-ci-test
 on: 
   workflow_dispatch:
     inputs:
-      tagname:
-        description: 'enter the tag name'     
+      image-tag:
+        description: 'enter the tag name (v*.*.*)'     
         required: true
         default: 'warning' 
   push: 
@@ -25,6 +25,19 @@ jobs:
           echo "$GITHUB_REF" 
           echo "$GITHUB_SHA" 
 
-      - name: find the branch 
-        run: git branch     
+      - name: Deciding Image tag 
+        shell: "bash"
+        run: |-
+          if [[ ${{ github.event_name }} == workflow_dispatch && ${{ github.ref_type }} == branch && ${{ github.ref_name }} == master ]]; then echo "IMAGE_TAG=${{ github.event.inputs.image-tag }}" >> $GITHUB_ENV; fi
+          if [[ ${{ github.event_name }} == workflow_dispatch && ${{ github.ref_type }} == tag ]]; then echo "IMAGE_TAG=${{ github.ref_name }}" >> $GITHUB_ENV; fi  
+          if [[ ${{ github.event_name }} == push && ${{ github.ref_type }} == tag ]]; then echo "IMAGE_TAG=${{ github.ref_name }}" >> $GITHUB_ENV; fi
+            
+      - name: display eniromntal varaiable
+        run: echo "$IMAGE_TAG" 
+             
+
+
+
+          # if [[ ${{ github.event_name }} == workflow_dispatch && ${{ github.event_name }} == workflow_dispatch ]]; then echo "IMAGE_TAG=${{ github.event.inputs.image-tag }}" >> $GITHUB_ENV; fi
+          # if [[ ${{ github.ref_type }} == tag ]]; then echo "IMAGE_TAG=${{ github.ref_name }}" >> $GITHUB_ENV; fi  
             
