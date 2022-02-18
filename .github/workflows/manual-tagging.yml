@@ -2,8 +2,8 @@ name: tagging based input
 on: 
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: 'Log level'     
+      tagname:
+        description: 'enter the tag name'     
         required: true
         default: 'warning' 
 
@@ -17,20 +17,15 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: tag the master branch
-        run: echo "${{ github.event.inputs.logLevel }}"
+        run: echo "${{ github.event.inputs.tagname }}"
       
         
       - name: verify the valid commit message received or not for tagging 
         run: |
-          if [[ ${{ github.event.inputs.logLevel }} == v*.*.* ]] || [[ ${{ github.event.inputs.logLevel }} == V*.*.* ]]; then exit 0; else exit 1; fi
+          if [[ ${{ github.event.inputs.tagname }} == v*.*.* ]] || [[ ${{ github.event.inputs.tagname }} == V*.*.* ]]; then exit 0; else exit 1; fi
         
       - name: tag the master branch
-        run: git tag "${{ github.event.inputs.logLevel }}"     
+        run: git tag "${{ github.event.inputs.tagname }}"     
         
       - name: push the tag to remote
-        run: git push origin "${{ github.event.inputs.logLevel }}"     
-        
-        
-   
-        
-        
+        run: git push origin "${{ github.event.inputs.tagname }}"     
