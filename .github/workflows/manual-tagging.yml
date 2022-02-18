@@ -2,7 +2,7 @@ name: tagging based input
 on: 
   workflow_dispatch:
     inputs:
-      TAG_INPUT:
+      taginput:
         description: 'Enter the tag (v*.*.*)'     
         required: true
         default: 'v*.*.*' 
@@ -17,12 +17,12 @@ jobs:
         
       - name: verify the valid commit message received or not for tagging 
         run: |
-          if [[ {{ github.event.inputs.TAG_INPUT }} == v*.*.* ]] || [[ {{ github.event.inputs.TAG_INPUT }} == V*.*.* ]]; then exit 0; else exit 1; fi
+          if [[ {{ github.event.inputs.taginput }} == v*.*.* ]] || [[ {{ github.event.inputs.taginput }} == V*.*.* ]]; then exit 0; else exit 1; fi
         
       - name: tag the master branch
-        run: git tag "{{ github.event.inputs.TAG_INPUT }}"     
+        run: git tag "{{ github.event.inputs.taginput }}"     
         
       - name: push the tag to remote
-        run: git push origin "{{ github.event.inputs.TAG_INPUT }}"     
+        run: git push origin "{{ github.event.inputs.taginput }}"     
         
         
