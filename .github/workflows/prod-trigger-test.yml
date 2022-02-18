@@ -1,4 +1,4 @@
-
+name: prod-ci-test
 on: 
   workflow_dispatch:
     inputs:
@@ -6,3 +6,19 @@ on:
         description: 'enter the tag name'     
         required: true
         default: 'warning' 
+  push: 
+    tag:
+      - v*.*.*
+
+jobs:
+  prod-CI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2  
+      - name: display eniromntal varaiable
+        run: | 
+          echo "${{ github.event.inputs.tagname }}"   
+          echo "${{ github.ref_name }}"
+          echo "${{ github.ref_type }}"
+          echo "${{ github.event }}"
+          echo "${{ github.event_name }}"    
