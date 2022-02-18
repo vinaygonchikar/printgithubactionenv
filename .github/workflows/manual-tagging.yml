@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       tagname:
-        description: 'enter the tag name'     
+        description: 'enter the tag name (v*.*.*)'     
         required: true
         default: 'warning' 
 
