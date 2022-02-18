@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: tag the master branch
-        run: echo ""{{ github.event.inputs.taginput }}"
+        run: echo "{{ github.event.inputs.taginput }}"
       
         
       - name: verify the valid commit message received or not for tagging 
