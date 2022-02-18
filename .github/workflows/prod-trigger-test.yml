@@ -24,4 +24,7 @@ jobs:
           echo "${{ github.event_name }}"  
           echo "$GITHUB_REF" 
           echo "$GITHUB_SHA" 
+
+      - name: find the branch 
+        run: git branch     
             
