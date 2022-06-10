@@ -1,0 +1,21 @@
+name: while
+on:
+  workflow_dispatch:
+
+jobs:
+  while:
+    runs-on: ubuntu-latest 
+    steps:
+  
+      - uses: actions/checkout@v2
+
+      - name: print 1 to 100
+        run: |
+        shell: bash
+        run: |
+          i=1
+          while [ $i -le 100 ]
+          do
+              echo $i
+              i=$(($i+1))
+          done
