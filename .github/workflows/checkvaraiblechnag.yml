@@ -1,0 +1,26 @@
+name: while
+on:
+  workflow_dispatch:
+
+jobs:
+  while:
+    runs-on: ubuntu-latest 
+    steps:
+  
+      - uses: actions/checkout@v2
+
+      - name: Set GitHub_Env value
+        run: |
+          echo "HOSTNAME=$(cat hellosir)" >> $GITHUB_ENV
+          
+      - name: Display GitHub_Env values
+        run: |
+          echo "The hostname is ${{ env.HOSTNAME }}"
+
+      - name: Set GitHub_Env value
+        run: |
+          echo "HOSTNAME=$(cat hellomadam)" >> $GITHUB_ENV
+          
+      - name: Display GitHub_Env values
+        run: |
+          echo "The hostname is ${{ env.HOSTNAME }}"
