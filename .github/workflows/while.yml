@@ -10,7 +10,6 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: print 1 to 100
-        run: |
         shell: bash
         run: |
           i=1
