@@ -11,7 +11,7 @@ jobs:
 
       - name: Set GitHub_Env value
         run: |
-          echo "HOSTNAME=$(cat hellosir)" >> $GITHUB_ENV
+          echo "HOSTNAME=$(echo "hellosir")" >> $GITHUB_ENV
           
       - name: Display GitHub_Env values
         run: |
@@ -19,7 +19,7 @@ jobs:
 
       - name: Set GitHub_Env value
         run: |
-          echo "HOSTNAME=$(cat hellomadam)" >> $GITHUB_ENV
+          echo "HOSTNAME=$(echo "hellomadam")" >> $GITHUB_ENV
           
       - name: Display GitHub_Env values
         run: |
