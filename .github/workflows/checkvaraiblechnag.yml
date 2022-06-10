@@ -1,9 +1,9 @@
-name: while
+name: checkvaraiblechnag
 on:
   workflow_dispatch:
 
 jobs:
-  while:
+  checkvaraiblechnag:
     runs-on: ubuntu-latest 
     steps:
   
