@@ -1,9 +1,9 @@
 name: 17th-june
 on:
-  ush:
+  push:
 
 jobs:
-  17th-june:
+  june:
     if: |
       github.ref_name != 'master' && github.ref_type == 'branch' && github.event_name == 'workflow_dispatch'   
     runs-on: ubuntu-latest 
