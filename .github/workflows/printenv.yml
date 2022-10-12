@@ -1,0 +1,25 @@
+name: printenv
+on:
+  push:
+
+jobs:
+  checkvaraiblechnag:
+    runs-on: ubuntu-latest 
+    steps:
+  
+      - uses: actions/checkout@v2
+
+      - name: printenv
+        run: |
+          echo "${{ github.repository }}"
+          echo "${{ github.github_run_id }}"
+          echo "${{ github.actor }}"
+          echo "${{ github.actor }}"
+          echo "${{ github.actor }}"
+          echo "${{ github.actor }}"
+          echo "${{ github.actor }}"
+          echo "${{ github.actor }}"
+          echo "${{ github.actor }}"
+          echo "${{ github.actor }}"
+          echo "${{ github.actor }}"
+          echo "${{ github.actor }}"
