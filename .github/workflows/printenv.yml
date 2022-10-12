@@ -12,14 +12,5 @@ jobs:
       - name: printenv
         run: |
           echo "${{ github.repository }}"
-          echo "${{ env.github_run_id }}"
-          echo "${{ github.actor }}"
-          echo "${{ github.actor }}"
-          echo "${{ github.actor }}"
-          echo "${{ github.actor }}"
-          echo "${{ github.actor }}"
-          echo "${{ github.actor }}"
-          echo "${{ github.actor }}"
-          echo "${{ github.actor }}"
-          echo "${{ github.actor }}"
-          echo "${{ github.actor }}"
+          echo "$GITHUB_RUN_ID"
+
